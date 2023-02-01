@@ -1,0 +1,98 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 35
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use ramesh;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_ramesh |
++------------------+
+| course           |
+| mentees          |
+| student          |
++------------------+
+3 rows in set (0.01 sec)
+
+mysql> select*from mentees;
++-------+--------+------+------------+-------+
+| regno | name   | dept | fathername | phno  |
++-------+--------+------+------------+-------+
+|  2346 | kumar  | cse  | suri       | 98790 |
+|  2367 | rajesh | cse  | suresh     | 98791 |
++-------+--------+------+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into mentees values(2370,"rajiv","biotech","ramesh",99372)
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+
+| regno | name   | dept    | fathername | phno  |
++-------+--------+---------+------------+-------+
+|  2346 | kumar  | cse     | suri       | 98790 |
+|  2367 | rajesh | cse     | suresh     | 98791 |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |
++-------+--------+---------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where regno=2345;
+Empty set (0.00 sec)
+
+mysql> alter table mentees add marks int(3);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set marks=98 where name="kumar";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=92 where name="rajesh";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set marks=92 where name="ramesh";
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> update mentees set marks=99 where name="rajiv";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++-------+--------+---------+------------+-------+-------+
+| regno | name   | dept    | fathername | phno  | marks |
++-------+--------+---------+------------+-------+-------+
+|  2346 | kumar  | cse     | suri       | 98790 |    98 |
+|  2367 | rajesh | cse     | suresh     | 98791 |    92 |
+|  2370 | rajiv  | biotech | ramesh     | 99372 |    99 |
++-------+--------+---------+------------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where name like 'k%';
++-------+-------+------+------------+-------+-------+
+| regno | name  | dept | fathername | phno  | marks |
++-------+-------+------+------------+-------+-------+
+|  2346 | kumar | cse  | suri       | 98790 |    98 |
++-------+-------+------+------------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where fathername like 'ra___h';
++-------+-------+---------+------------+-------+-------+
+| regno | name  | dept    | fathername | phno  | marks |
++-------+-------+---------+------------+-------+-------+
+|  2370 | rajiv | biotech | ramesh     | 99372 |    99 |
++-------+-------+---------+------------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql>
