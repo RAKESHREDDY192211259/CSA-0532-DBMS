@@ -1,0 +1,75 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database ramesh;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use ramesh;
+Database changed
+mysql> create table sales(productname varchar(20),price int(10),noofitmes int(10),balance int(10));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc sales;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| productname | varchar(20) | YES  |     | NULL    |       |
+| price       | int(10)     | YES  |     | NULL    |       |
+| noofitmes   | int(10)     | YES  |     | NULL    |       |
+| balance     | int(10)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into sales values("chocolate",50,2,13);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales values("biscuit",30,3,10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales values("rin",150,1,50);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into sales values("clinic",2,15,12);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from sales;
++-------------+-------+-----------+---------+
+| productname | price | noofitmes | balance |
++-------------+-------+-----------+---------+
+| chocolate   |    50 |         2 |      13 |
+| biscuit     |    30 |         3 |      10 |
+| rin         |   150 |         1 |      50 |
+| clinic      |     2 |        15 |      12 |
++-------------+-------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> alter table sales add remainingstock varchar(10);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> desc sales;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| productname    | varchar(20) | YES  |     | NULL    |       |
+| price          | int(10)     | YES  |     | NULL    |       |
+| noofitmes      | int(10)     | YES  |     | NULL    |       |
+| balance        | int(10)     | YES  |     | NULL    |       |
+| remainingstock | varchar(10) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> drop table sales;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> create database ramesh;
