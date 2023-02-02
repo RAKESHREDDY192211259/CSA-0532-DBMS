@@ -1,0 +1,80 @@
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 27
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use ramesh;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_ramesh |
++------------------+
+| bookcompany      |
+| course           |
+| dept             |
+| marks            |
+| marks_view       |
+| menteedetails    |
+| mentees          |
+| movies           |
+| per              |
+| student          |
++------------------+
+10 rows in set (0.00 sec)
+
+mysql> desc bank;
+ERROR 1146 (42S02): Table 'ramesh.bank' doesn't exist
+mysql> create user ramesh;
+ERROR 1396 (HY000): Operation CREATE USER failed for 'ramesh'@'%'
+mysql> grant all on bank to ramesh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for ramesh;
++---------------------------------------------------------+
+| Grants for ramesh@%                                     |
++---------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'ramesh'@'%'                      |
+| GRANT ALL PRIVILEGES ON `ramesh`.`bank` TO 'ramesh'@'%' |
++---------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke all on bank from ramesh;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for ramesh;
++------------------------------------+
+| Grants for ramesh@%                |
++------------------------------------+
+| GRANT USAGE ON *.* TO 'ramesh'@'%' |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> grant select,update on sales to ramesh;
+ERROR 1146 (42S02): Table 'ramesh.sales' doesn't exist
+mysql> show grants for ramesh;
++------------------------------------+
+| Grants for ramesh@%                |
++------------------------------------+
+| GRANT USAGE ON *.* TO 'ramesh'@'%' |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> revoke update on sales from ramesh;
+ERROR 1147 (42000): There is no such grant defined for user 'ramesh' on host '%' on table 'sales'
+mysql> show grants for ramesh;
++------------------------------------+
+| Grants for ramesh@%                |
++------------------------------------+
+| GRANT USAGE ON *.* TO 'ramesh'@'%' |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql>
